@@ -3,10 +3,11 @@ version: '3.8'
 services:
   mysql:
     image: 'mysql:latest'
-    container_name: mysql
+    container_name: microservices-houses-mysql
     restart: always
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_DATABASE: stock
+      MYSQL_USER: ${MYSQL_USER}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - '${MYSQL_PORT}:3306'
