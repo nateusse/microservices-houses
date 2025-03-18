@@ -1,4 +1,4 @@
-package com.microserviceshouses.locations.domain.exceptions;
+package com.microserviceshouses.category.domain.exceptions;
 
 public class NameMaxSizeExceededException extends RuntimeException {
     public NameMaxSizeExceededException() {
