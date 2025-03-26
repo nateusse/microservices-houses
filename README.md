@@ -1,4 +1,7 @@
-# Back-end
+# Microservices-houses back-end
 
-[User histories](https://github.com/nateusse/microservices-houses/wiki/Historias-de-usuario)
+## Specificities:
+- Language/version: java 17
+- Data base: MySQL
+- [User histories](https://github.com/nateusse/microservices-houses/wiki/Historias-de-usuario)
 
