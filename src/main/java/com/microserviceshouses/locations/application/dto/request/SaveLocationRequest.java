@@ -1,4 +1,9 @@
 package com.microserviceshouses.locations.application.dto.request;
 
-public class SaveLocationRequest {
-}
+public record SaveLocationRequest(
+        String cityName,
+        String cityDescription,
+        String departmentName,
+        String departmentDescription
+) {}
+

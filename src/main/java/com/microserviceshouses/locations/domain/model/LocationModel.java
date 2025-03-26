@@ -1,6 +1,5 @@
 package com.microserviceshouses.locations.domain.model;
 
-import java.util.UUID;
 
 public class LocationModel {
     private Long id;
@@ -20,9 +19,6 @@ public class LocationModel {
         return id;
     }
 
-    public void setId(Long id) { // Setter in case of JPA auto-generation
-        this.id = id;
-    }
 
     public City getCity() {
         return city;

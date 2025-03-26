@@ -1,5 +1,9 @@
 package com.microserviceshouses.locations.application.dto.response;
 
-public class SaveLocationResponse {
-}
 
+public record SaveLocationResponse(
+        Long id,
+        String cityName,
+        String departmentName,
+        String message
+){}
