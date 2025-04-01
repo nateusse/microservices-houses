@@ -47,6 +47,10 @@ public class CategoryPersistenceAdapter implements CategoryPersistencePort {
 
 
 
+    @Override
+    public boolean existsByName(String name) {
+        return categoryRepository.existsByName(name);
+    }
 
 
 }
