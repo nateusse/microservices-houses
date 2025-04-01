@@ -53,6 +53,6 @@ jobs:
       - name: Build with Gradle
         env:
           DB_NAME: ${{ secrets.DB_NAME }}
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_USERNAME: root
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: ./gradlew build
