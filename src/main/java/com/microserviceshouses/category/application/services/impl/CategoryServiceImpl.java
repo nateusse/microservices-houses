@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +23,11 @@ public class CategoryServiceImpl implements CategoryService {
         categoryServicePort.save(categoryDtoMapper.requestToModel(request));
         //TODO add exception constants
         return new SaveCategoryResponse("Category saved successfully", LocalDateTime.now());
+    }
+
+    @Override
+    public List<CategoryResponse> getCategories(Integer page, Integer size, boolean orderAsc) {
+        return categoryDtoMapper.modelListToResponseList(categoryServicePort.getCategories(page, size, orderAsc));
     }
 
 
