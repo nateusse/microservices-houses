@@ -6,6 +6,7 @@ import com.microserviceshouses.category.application.dto.response.SaveCategoryRes
 import com.microserviceshouses.category.application.mappers.CategoryDtoMapper;
 import com.microserviceshouses.category.application.services.CategoryService;
 import com.microserviceshouses.category.domain.ports.in.CategoryServicePort;
+import com.microserviceshouses.commons.configurations.utils.Constants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public SaveCategoryResponse save(SaveCategoryRequest request) {
         categoryServicePort.save(categoryDtoMapper.requestToModel(request));
-        //TODO add exception constants
-        return new SaveCategoryResponse("Category saved successfully", LocalDateTime.now());
+        return new SaveCategoryResponse(Constants.SAVE_CATEGORY_RESPONSE_MESSAGE, LocalDateTime.now());
     }
 
     @Override

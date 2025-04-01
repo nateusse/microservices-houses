@@ -14,7 +14,8 @@ public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
+    @Column(length = 50, nullable = false, unique = true)
     private String name;
+    @Column(length = 90, nullable = false)
     private String description;
 }
