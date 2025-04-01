@@ -21,7 +21,10 @@ public class CategoryPersistenceAdapter implements CategoryPersistencePort {
         categoryRepository.save(categoryEntityMapper.modelToEntity(categoryModel));
     }
 
-
+    @Override
+    public boolean existsByName(String name) {
+        return categoryRepository.existsByName(name);
+    }
 
 
 }

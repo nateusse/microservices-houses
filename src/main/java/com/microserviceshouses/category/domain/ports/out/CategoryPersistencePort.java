@@ -7,4 +7,5 @@ import com.microserviceshouses.category.domain.model.CategoryModel;
 public interface CategoryPersistencePort {
     void save(CategoryModel categoryModel);
 
+    boolean existsByName(String name);
 }
