@@ -9,4 +9,5 @@ public interface CategoryPersistencePort {
     CategoryModel getCategoryByName(String categoryName);
     List<CategoryModel> getCategories(Integer page, Integer size, boolean orderAsc);
 
+    boolean existsByName(String name);
 }
