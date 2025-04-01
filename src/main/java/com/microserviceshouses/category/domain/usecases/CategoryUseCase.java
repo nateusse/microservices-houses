@@ -4,6 +4,8 @@ import com.microserviceshouses.category.domain.model.CategoryModel;
 import com.microserviceshouses.category.domain.ports.in.CategoryServicePort;
 import com.microserviceshouses.category.domain.ports.out.CategoryPersistencePort;
 
+import java.util.List;
+
 
 public class CategoryUseCase implements CategoryServicePort {
     private final CategoryPersistencePort categoryPersistencePort;
@@ -17,6 +19,7 @@ public class CategoryUseCase implements CategoryServicePort {
 
         categoryPersistencePort.save(categoryModel);
     }
+
 
 
 }
