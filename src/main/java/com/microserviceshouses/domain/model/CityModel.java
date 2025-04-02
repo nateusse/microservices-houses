@@ -1,19 +1,19 @@
 package com.microserviceshouses.domain.model;
 
 import java.util.Objects;
-import java.util.UUID;
+
 
 import static com.microserviceshouses.domain.utils.validations.Validation.validateDescription;
 import static com.microserviceshouses.domain.utils.validations.Validation.validateName;
 
 public class CityModel {
 
-    private UUID id;;
+    private Long id;
     private String name;
     private String description;
     private DepartmentModel department;
 
-    public CityModel(UUID id, String name, String description, DepartmentModel department) {
+    public CityModel(Long id, String name, String description, DepartmentModel department) {
         this.name = validateName(name, "City name", 50);
         this.description = validateDescription(description, "City description", 120);
         this.department = Objects.requireNonNull(department, "City must belong to a department");
@@ -28,7 +28,7 @@ public class CityModel {
         this.description = validateDescription(description, "City description", 120);
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 

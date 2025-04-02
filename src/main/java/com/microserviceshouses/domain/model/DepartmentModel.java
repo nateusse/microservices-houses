@@ -1,6 +1,6 @@
 package com.microserviceshouses.domain.model;
 
-import java.util.UUID;
+
 
 import static com.microserviceshouses.domain.utils.validations.Validation.validateDescription;
 import static com.microserviceshouses.domain.utils.validations.Validation.validateName;
@@ -8,11 +8,11 @@ import static com.microserviceshouses.domain.utils.validations.Validation.valida
 
 public class DepartmentModel {
 
-    private UUID id;
+    private Long id;
     private String name;
     private String description;
 
-    public DepartmentModel(UUID id, String name, String description) {
+    public DepartmentModel(Long id, String name, String description) {
         this.name = validateName(name, "Department name", 50);
         this.description = validateDescription(description, "Department description", 120);
         this.id = id;
@@ -25,14 +25,21 @@ public class DepartmentModel {
     public void setDescription(String description) {
         this.description = validateDescription(description, "Department description", 120);
     }
+
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
-    }
-    public UUID getId() {
-        return id;
     }
 
     public String getDescription() {
         return description;
     }
+
+
+
+
+
 }

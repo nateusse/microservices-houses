@@ -6,7 +6,9 @@ import com.microserviceshouses.application.dto.response.SaveDepartmentResponse;
 
 import java.util.List;
 
+
+
 public interface DepartmentService {
     SaveDepartmentResponse save(SaveDepartmentRequest request);
-    List<DepartmentResponse> getAll();
+
 }

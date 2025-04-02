@@ -17,11 +17,11 @@ import java.util.List;
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final DepartmentServicePort departmentServicePort;
-    private final DepartmentDtoMapper mapper;
+    private final DepartmentDtoMapper departmentDtoMapper;
 
     @Override
     public SaveDepartmentResponse save(SaveDepartmentRequest request) {
-        DepartmentModel model = mapper.requestToModel(request);
+        DepartmentModel model = departmentDtoMapper.requestToModel(request);
         departmentServicePort.save(model);
 
         return new SaveDepartmentResponse(
@@ -32,8 +32,5 @@ public class DepartmentServiceImpl implements DepartmentService {
         );
     }
 
-    @Override
-    public List<DepartmentResponse> getAll() {
-        return List.of();
-    }
+
 }

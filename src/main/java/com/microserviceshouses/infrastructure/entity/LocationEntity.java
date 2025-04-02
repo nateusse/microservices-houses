@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
+
 
 @Entity
 @Data
@@ -16,7 +16,7 @@ import java.util.UUID;
 public class LocationEntity {
     @Id
     @GeneratedValue
-    private UUID id;
+    private Long id;
 
     @Column(length = 50, nullable = false)
     private String sectorOrNeighborhood;

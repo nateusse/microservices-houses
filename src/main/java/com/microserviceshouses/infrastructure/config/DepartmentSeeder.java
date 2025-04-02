@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -18,9 +17,9 @@ public class DepartmentSeeder {
     @PostConstruct
     public void seedDepartments() {
         List<DepartmentModel> departments = List.of(
-                new DepartmentModel(UUID.randomUUID(), "Antioquia", "Main department in Colombia"),
-                new DepartmentModel(UUID.randomUUID(), "Cundinamarca", "Department surrounding Bogotá"),
-                new DepartmentModel(UUID.randomUUID(), "Valle del Cauca", "Home of Cali and delicious food")
+                new DepartmentModel(null, "Antioquia", "Mountainous department with Medellín as its capital."),
+                new DepartmentModel(null, "Cundinamarca", "Department in central Colombia with Bogotá as capital."),
+                new DepartmentModel(null, "Valle del Cauca", "Pacific region, capital is Cali, home to Buenaventura.")
         );
 
         for (DepartmentModel dept : departments) {
