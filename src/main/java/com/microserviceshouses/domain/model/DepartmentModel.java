@@ -2,6 +2,8 @@ package com.microserviceshouses.domain.model;
 
 
 
+import java.util.Objects;
+
 import static com.microserviceshouses.domain.utils.validations.Validation.validateDescription;
 import static com.microserviceshouses.domain.utils.validations.Validation.validateName;
 
@@ -18,6 +20,10 @@ public class DepartmentModel {
         this.id = id;
     }
 
+    public DepartmentModel(Long id) {
+        this.id = Objects.requireNonNull(id, "Department ID must not be null");
+    }
+
     public void setName(String name) {
         this.name = validateName(name, "Department name", 50);
     }
@@ -25,6 +31,8 @@ public class DepartmentModel {
     public void setDescription(String description) {
         this.description = validateDescription(description, "Department description", 120);
     }
+
+
 
     public Long getId() {
         return id;

@@ -1,9 +1,12 @@
 package com.microserviceshouses.domain.usecases;
 
 
+import com.microserviceshouses.domain.model.CategoryModel;
 import com.microserviceshouses.domain.model.LocationModel;
 import com.microserviceshouses.domain.ports.in.LocationServicePort;
 import com.microserviceshouses.domain.ports.out.LocationPersistencePort;
+
+import java.util.List;
 
 public class LocationUseCase  implements LocationServicePort {
 
@@ -23,5 +26,10 @@ public class LocationUseCase  implements LocationServicePort {
         }
 
         locationPersistencePort.save(location);
+    }
+
+    @Override
+    public List<CategoryModel> getLocations(Integer page, Integer size, boolean orderAsc) {
+        return List.of();
     }
 }

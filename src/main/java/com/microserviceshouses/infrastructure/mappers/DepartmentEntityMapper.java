@@ -7,7 +7,16 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface DepartmentEntityMapper {
+
     DepartmentEntity modelToEntity(DepartmentModel departmentModel);
-    DepartmentModel entityToModel(DepartmentEntity departmentEntity);
+
+    default DepartmentModel entityToModel(DepartmentEntity entity) {
+        return new DepartmentModel(
+                entity.getId(),
+                entity.getName(),
+                entity.getDescription()
+        );
+    }
 }
+
 

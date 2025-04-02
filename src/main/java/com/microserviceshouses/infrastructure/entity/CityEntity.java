@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class CityEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 50, nullable = false)
@@ -25,7 +25,9 @@ public class CityEntity {
     @Column(length = 120, nullable = false)
     private String description;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "department_id", nullable = false)
     private DepartmentEntity department;
 }
+
+

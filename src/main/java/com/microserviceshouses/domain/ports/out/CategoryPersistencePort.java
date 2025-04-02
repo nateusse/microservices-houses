@@ -8,6 +8,5 @@ public interface CategoryPersistencePort {
     void save(CategoryModel categoryModel);
     CategoryModel getCategoryByName(String categoryName);
     List<CategoryModel> getCategories(Integer page, Integer size, boolean orderAsc);
-
     boolean existsByName(String name);
 }
