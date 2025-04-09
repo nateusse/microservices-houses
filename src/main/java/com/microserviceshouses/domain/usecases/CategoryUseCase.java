@@ -8,6 +8,7 @@ import java.util.List;
 
 
 public class CategoryUseCase implements CategoryServicePort {
+
     private final CategoryPersistencePort categoryPersistencePort;
 
     public CategoryUseCase(CategoryPersistencePort categoryPersistencePort) {

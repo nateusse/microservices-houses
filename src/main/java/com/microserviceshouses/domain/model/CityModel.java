@@ -13,6 +13,10 @@ public class CityModel {
     private String description;
     private DepartmentModel department;
 
+    public CityModel(Long id) {
+        this.id = Objects.requireNonNull(id, "City ID must not be null");
+    }
+
     public CityModel(Long id, String name, String description, DepartmentModel department) {
         this.name = validateName(name, "City name", 50);
         this.description = validateDescription(description, "City description", 120);

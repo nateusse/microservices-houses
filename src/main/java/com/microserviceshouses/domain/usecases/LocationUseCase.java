@@ -32,4 +32,9 @@ public class LocationUseCase  implements LocationServicePort {
     public List<CategoryModel> getLocations(Integer page, Integer size, boolean orderAsc) {
         return List.of();
     }
+
+    @Override
+    public List<LocationModel> searchLocations(String text, String orderBy, boolean ascending, int page, int size) {
+        return locationPersistencePort.searchLocations(text, orderBy, ascending, page, size);
+    }
 }

@@ -15,13 +15,14 @@ import java.util.List;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface LocationDtoMapper {
 
-    LocationModel requestToModel(SaveLocationRequest locationRequest);
+    default LocationModel requestToModel(SaveLocationRequest request) {
+        CityModel city = new CityModel(request.cityId());
+        return new LocationModel(null, request.sectorOrNeighborhood(), city);
+    }
 
-    @Mapping(source = "id", target = "id")
-    @Mapping(source = "sectorOrNeighborhood", target = "sectorOrNeighborhood")
     @Mapping(source = "city.name", target = "cityName")
     @Mapping(source = "city.department.name", target = "departmentName")
     LocationResponse modelToResponse(LocationModel locationModel);
 
-    List<LocationResponse> modelListToResponseList(List<LocationModel> locations);
+    List<LocationResponse> modelListToResponseList(List<LocationModel> models);
 }

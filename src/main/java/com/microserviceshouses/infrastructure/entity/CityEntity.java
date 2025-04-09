@@ -25,7 +25,7 @@ public class CityEntity {
     @Column(length = 120, nullable = false)
     private String description;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = false)
     private DepartmentEntity department;
 }
