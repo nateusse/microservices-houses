@@ -1,5 +1,6 @@
 package com.microserviceshouses.domain.usecases;
 
+import com.microserviceshouses.domain.exceptions.DepartmentNameAlreadyExistsException;
 import com.microserviceshouses.domain.model.DepartmentModel;
 import com.microserviceshouses.domain.ports.in.DepartmentServicePort;
 import com.microserviceshouses.domain.ports.out.DepartmentPersistencePort;
@@ -15,14 +16,14 @@ public class DepartmentUseCase implements DepartmentServicePort {
     @Override
     public void validateUniqueName(String name) {
         if (departmentPersistencePort.existsByName(name)) {
-            throw new RuntimeException("Department name already exists");
+            throw new DepartmentNameAlreadyExistsException();
         }
     }
 
     @Override
     public void save(DepartmentModel departmentModel) {
         if (departmentPersistencePort.existsByName(departmentModel.getName())) {
-            throw new RuntimeException("Department already exists");
+            throw new DepartmentNameAlreadyExistsException();
         }
         departmentPersistencePort.save(departmentModel);
     }

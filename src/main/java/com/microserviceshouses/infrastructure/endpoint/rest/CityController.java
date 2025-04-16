@@ -1,7 +1,6 @@
 package com.microserviceshouses.infrastructure.endpoint.rest;
 
 import com.microserviceshouses.application.dto.request.SaveCityRequest;
-import com.microserviceshouses.application.dto.response.CityResponse;
 import com.microserviceshouses.application.services.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

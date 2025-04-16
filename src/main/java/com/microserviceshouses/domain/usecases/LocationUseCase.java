@@ -1,11 +1,10 @@
 package com.microserviceshouses.domain.usecases;
 
-
+import com.microserviceshouses.domain.exceptions.LocationAlreadyExist;
 import com.microserviceshouses.domain.model.CategoryModel;
 import com.microserviceshouses.domain.model.LocationModel;
 import com.microserviceshouses.domain.ports.in.LocationServicePort;
 import com.microserviceshouses.domain.ports.out.LocationPersistencePort;
-
 import java.util.List;
 
 public class LocationUseCase  implements LocationServicePort {
@@ -22,7 +21,7 @@ public class LocationUseCase  implements LocationServicePort {
                 location.getSectorOrNeighborhood(),
                 location.getCity().getName()
         )) {
-            throw new RuntimeException("Location already exists in this city");
+            throw new LocationAlreadyExist();
         }
 
         locationPersistencePort.save(location);

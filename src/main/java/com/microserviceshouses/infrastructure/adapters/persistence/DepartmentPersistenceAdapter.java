@@ -1,5 +1,6 @@
 package com.microserviceshouses.infrastructure.adapters.persistence;
 
+import com.microserviceshouses.domain.exceptions.DepartmentNameAlreadyExistsException;
 import com.microserviceshouses.domain.model.DepartmentModel;
 import com.microserviceshouses.domain.ports.out.DepartmentPersistencePort;
 import com.microserviceshouses.infrastructure.mappers.DepartmentEntityMapper;
@@ -22,7 +23,7 @@ public class DepartmentPersistenceAdapter implements DepartmentPersistencePort {
     @Override
     public void save(DepartmentModel model) {
         if (existsByName(model.getName())) {
-            throw new RuntimeException("Department already exists");
+            throw new DepartmentNameAlreadyExistsException();
         }
         departmentRepository.save(departmentEntityMapper.modelToEntity(model));
     }

@@ -1,7 +1,6 @@
 package com.microserviceshouses.application.services.impl;
 
 import com.microserviceshouses.application.dto.request.SaveDepartmentRequest;
-import com.microserviceshouses.application.dto.response.DepartmentResponse;
 import com.microserviceshouses.application.dto.response.SaveDepartmentResponse;
 import com.microserviceshouses.application.mappers.DepartmentDtoMapper;
 import com.microserviceshouses.application.services.DepartmentService;
@@ -9,8 +8,6 @@ import com.microserviceshouses.domain.model.DepartmentModel;
 import com.microserviceshouses.domain.ports.in.DepartmentServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

@@ -1,9 +1,8 @@
 package com.microserviceshouses.domain.model;
 
-
-
 import java.util.Objects;
-
+import static com.microserviceshouses.domain.utils.constants.DomainConstants.LOCATION_DESCRIPTION_MAX_LENGTH;
+import static com.microserviceshouses.domain.utils.constants.DomainConstants.LOCATION_NAME_MAX_LENGTH;
 import static com.microserviceshouses.domain.utils.validations.Validation.validateDescription;
 import static com.microserviceshouses.domain.utils.validations.Validation.validateName;
 
@@ -15,8 +14,8 @@ public class DepartmentModel {
     private String description;
 
     public DepartmentModel(Long id, String name, String description) {
-        this.name = validateName(name, "Department name", 50);
-        this.description = validateDescription(description, "Department description", 120);
+        this.name = validateName(name, "Department name", LOCATION_NAME_MAX_LENGTH);
+        this.description = validateDescription(description, "Department description", LOCATION_DESCRIPTION_MAX_LENGTH);
         this.id = id;
     }
 
@@ -25,14 +24,12 @@ public class DepartmentModel {
     }
 
     public void setName(String name) {
-        this.name = validateName(name, "Department name", 50);
+        this.name = validateName(name, "Department name", LOCATION_NAME_MAX_LENGTH);
     }
 
     public void setDescription(String description) {
-        this.description = validateDescription(description, "Department description", 120);
+        this.description = validateDescription(description, "Department description", LOCATION_DESCRIPTION_MAX_LENGTH);
     }
-
-
 
     public Long getId() {
         return id;

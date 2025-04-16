@@ -1,6 +1,7 @@
 package com.microserviceshouses.infrastructure.adapters.persistence;
 
 
+import com.microserviceshouses.domain.exceptions.CityNotFoundException;
 import com.microserviceshouses.domain.model.LocationModel;
 import com.microserviceshouses.domain.ports.out.LocationPersistencePort;
 import com.microserviceshouses.infrastructure.entity.CityEntity;
@@ -30,9 +31,9 @@ public class LocationPersistenceAdapter implements LocationPersistencePort {
 
     @Override
     public void save(LocationModel locationModel) {
-        Long cityId = locationModel.getCity().getId();
+       // Long cityId = locationModel.getCity().getId();
         CityEntity city = cityRepository.findById(locationModel.getCity().getId())
-                .orElseThrow(() -> new RuntimeException("City not found"));
+                .orElseThrow(() -> new CityNotFoundException());
 
         LocationEntity entity = locationEntityMapper.modelToEntity(locationModel);
         entity.setCity(city);
@@ -70,8 +71,6 @@ public class LocationPersistenceAdapter implements LocationPersistencePort {
                 .toList();
     }
 
- //errror repo//debugg
-    //debuggin with brak points
 
 
 }

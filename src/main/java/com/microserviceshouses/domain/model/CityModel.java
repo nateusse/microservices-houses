@@ -2,7 +2,8 @@ package com.microserviceshouses.domain.model;
 
 import java.util.Objects;
 
-
+import static com.microserviceshouses.domain.utils.constants.DomainConstants.LOCATION_DESCRIPTION_MAX_LENGTH;
+import static com.microserviceshouses.domain.utils.constants.DomainConstants.LOCATION_NAME_MAX_LENGTH;
 import static com.microserviceshouses.domain.utils.validations.Validation.validateDescription;
 import static com.microserviceshouses.domain.utils.validations.Validation.validateName;
 
@@ -18,18 +19,18 @@ public class CityModel {
     }
 
     public CityModel(Long id, String name, String description, DepartmentModel department) {
-        this.name = validateName(name, "City name", 50);
-        this.description = validateDescription(description, "City description", 120);
+        this.name = validateName(name, "City name", LOCATION_NAME_MAX_LENGTH);
+        this.description = validateDescription(description, "City description", LOCATION_DESCRIPTION_MAX_LENGTH);
         this.department = Objects.requireNonNull(department, "City must belong to a department");
         this.id = id;
     }
 
     public void setName(String name) {
-        this.name = validateName(name, "City name", 50);
+        this.name = validateName(name, "City name", LOCATION_NAME_MAX_LENGTH);
     }
 
     public void setDescription(String description) {
-        this.description = validateDescription(description, "City description", 120);
+        this.description = validateDescription(description, "City description", LOCATION_DESCRIPTION_MAX_LENGTH);
     }
 
     public Long getId() {
