@@ -6,6 +6,7 @@ import com.microserviceshouses.infrastructure.mappers.CategoryEntityMapper;
 import com.microserviceshouses.infrastructure.repositories.mysql.CategoryRepository;
 import com.microserviceshouses.commons.configurations.utils.Constants;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -29,22 +30,21 @@ public class CategoryPersistenceAdapter implements CategoryPersistencePort {
     }
 
     @Override
-    public CategoryModel getCategoryByName(String categoryName) {
-        return categoryEntityMapper.entityToModel(categoryRepository.findByName(categoryName).orElse(null));
-    }
-
-    @Override
-    public List<CategoryModel> getCategories(Integer page, Integer size, boolean orderAsc) {
-        Pageable pagination;
-        if (orderAsc) pagination = PageRequest.of(page, size, Sort.by(Constants.PAGEABLE_FIELD_NAME).ascending());
-        else pagination = PageRequest.of(page, size, Sort.by(Constants.PAGEABLE_FIELD_NAME).descending());
-        return categoryEntityMapper.entityListToModelList(categoryRepository.findAll(pagination).getContent());
-    }
-
-
-    @Override
     public boolean existsByName(String name) {
         return categoryRepository.existsByName(name);
+    }
+
+    @Override
+    public CategoryModel getCategoryByName(String name) {
+        return categoryEntityMapper.entityToModel(
+                categoryRepository.findByName(name).orElse(null)
+        );
+    }
+
+    @Override
+    public Page<CategoryModel> getCategoriesByName(String name, Pageable pageable) {
+        return categoryRepository.findByNameContainingIgnoreCase(name, pageable)
+                .map(categoryEntityMapper::entityToModel);
     }
 
 

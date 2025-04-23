@@ -4,8 +4,9 @@ import com.microserviceshouses.domain.model.CategoryModel;
 import com.microserviceshouses.domain.ports.in.CategoryServicePort;
 import com.microserviceshouses.domain.ports.out.CategoryPersistencePort;
 import com.microserviceshouses.domain.exceptions.CategoryAlreadyExistsException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-import java.util.List;
 
 
 public class CategoryUseCase implements CategoryServicePort {
@@ -27,10 +28,8 @@ public class CategoryUseCase implements CategoryServicePort {
     }
 
     @Override
-    public List<CategoryModel> getCategories(Integer page, Integer size, boolean orderAsc) {
-        return categoryPersistencePort.getCategories(page, size, orderAsc);
+    public Page<CategoryModel> getCategoriesByName(String name, Pageable pageable) {
+        return categoryPersistencePort.getCategoriesByName(name, pageable);
     }
-
-
 
 }

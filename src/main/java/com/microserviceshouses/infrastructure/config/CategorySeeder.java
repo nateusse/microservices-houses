@@ -20,9 +20,9 @@ public class CategorySeeder {
         seedIfNotExists("New", "Brand new property, ready to move in");
         seedIfNotExists("Used", "Previously owned property in good condition");
         seedIfNotExists("Luxury", "High-end property with premium finishes");
-        seedIfNotExists("Affordable", "Budget-friendly property ideal for first-time buyers");
+        seedIfNotExists("Affordable", "Budget-friendly property");
         seedIfNotExists("Residential", "Property intended for living purposes");
-        seedIfNotExists("Commercial", "Ideal for shops, offices or other business purposes");
+        seedIfNotExists("Commercial", "Shops, offices or bussiness");
         seedIfNotExists("Pet Friendly", "Suitable property for living with pets");
         seedIfNotExists("Furnished", "Includes furniture and ready to use");
     }

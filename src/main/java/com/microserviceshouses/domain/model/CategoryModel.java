@@ -36,7 +36,7 @@ public class CategoryModel {
     }
 
     public void setName(String name) {
-        this.name = Objects.requireNonNull(name, "Name must not be null").trim();
+        this.name = Objects.requireNonNull(name, FIELD_NAME_NULL_MESSAGE).trim();
         if (name.isEmpty()) throw new NameNotEmptyException();
         if (name.length() > CATEGORY_NAME_MAX_LENGTH) throw new NameMaxSizeExceededException();
         this.name = name;
@@ -47,7 +47,7 @@ public class CategoryModel {
     }
 
     public void setDescription(String description) {
-        this.description = Objects.requireNonNull(description, "Description must not be null").trim();
+        this.description = Objects.requireNonNull(description, FIELD_DESCRIPTION_NULL_MESSAGE).trim();
         if (description.isEmpty()) throw new DescriptionNotEmptyException();
         if (description.length()  > CATEGORY_DESCRIPTION_MAX_LENGTH) throw new DescriptionMaxSizeExceededException();
         this.description = description;
