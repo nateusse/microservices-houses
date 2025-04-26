@@ -2,8 +2,8 @@ package com.microserviceshouses.domain.usecases;
 
 import com.microserviceshouses.domain.model.CategoryModel;
 import com.microserviceshouses.domain.ports.in.CategoryServicePort;
-import com.microserviceshouses.domain.ports.out.CategoryPersistencePort;
 import com.microserviceshouses.domain.exceptions.CategoryAlreadyExistsException;
+import com.microserviceshouses.domain.ports.out.CategoryPersistencePort;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
