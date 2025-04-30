@@ -1,4 +1,4 @@
-INSERT INTO categories (name, description) VALUES
+INSERT IGNORE  INTO categories (name, description) VALUES
                                ('Lujosa', 'Casa con acabados premium y zonas exclusivas'),
                                ('Económica', 'Casa accesible en precio y de tamaño estándar'),
                                ('Pet-friendly', 'Diseñada para convivir con mascotas'),
