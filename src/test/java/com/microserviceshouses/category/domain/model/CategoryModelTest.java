@@ -1,9 +1,9 @@
 package com.microserviceshouses.category.domain.model;
 
+import com.microserviceshouses.domain.model.CategoryModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import static com.microserviceshouses.category.domain.utils.constants.TestConstants.*;
 
 
 class CategoryModelTest {

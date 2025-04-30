@@ -1,12 +1,13 @@
-package com.microserviceshouses.category.domain.ports.in;
+package com.microserviceshouses.domain.ports.out;
 
 import com.microserviceshouses.domain.model.CategoryModel;
-
 import java.util.List;
 
 
-public interface CategoryServicePort {
-    void save(CategoryModel categoryModel);
-    List<CategoryModel> getCategories(Integer page, Integer size, boolean orderAsc);
 
+public interface CategoryPersistencePort {
+    void save(CategoryModel categoryModel);
+    CategoryModel getCategoryByName(String categoryName);
+    List<CategoryModel> getCategories(Integer page, Integer size, boolean orderAsc);
+    boolean existsByName(String name);
 }
