@@ -1,11 +1,11 @@
 package com.microserviceshouses.commons.configurations.beans;
 
-import com.microserviceshouses.category.domain.ports.in.CategoryServicePort;
-import com.microserviceshouses.category.domain.ports.out.CategoryPersistencePort;
-import com.microserviceshouses.category.domain.usecases.CategoryUseCase;
-import com.microserviceshouses.category.infrastructure.adapters.persistence.CategoryPersistenceAdapter;
-import com.microserviceshouses.category.infrastructure.mappers.CategoryEntityMapper;
-import com.microserviceshouses.category.infrastructure.repositories.mysql.CategoryRepository;
+import com.microserviceshouses.domain.ports.in.CategoryServicePort;
+import com.microserviceshouses.domain.ports.out.CategoryPersistencePort;
+import com.microserviceshouses.domain.usecases.CategoryUseCase;
+import com.microserviceshouses.infrastructure.adapters.persistence.CategoryPersistenceAdapter;
+import com.microserviceshouses.infrastructure.mappers.CategoryEntityMapper;
+import com.microserviceshouses.infrastructure.repositories.mysql.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
