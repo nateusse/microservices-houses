@@ -7,6 +7,7 @@ import com.microserviceshouses.application.dto.response.SaveCategoryResponse;
 import com.microserviceshouses.application.mappers.CategoryDtoMapper;
 import com.microserviceshouses.application.services.CategoryService;
 import com.microserviceshouses.domain.model.CategoryModel;
+import com.microserviceshouses.domain.model.PaginationRequest;
 import com.microserviceshouses.domain.ports.in.CategoryServicePort;
 import com.microserviceshouses.commons.configurations.utils.Constants;
 import lombok.RequiredArgsConstructor;
@@ -31,8 +32,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public PageDto<CategoryResponse> getCategories(String name, int page, int size, boolean orderAsc) {
-        Pageable pageable = PageRequest.of(page, size, Sort.by(orderAsc ? Sort.Direction.ASC : Sort.Direction.DESC, "name"));
-        Page<CategoryModel> categoryPage = categoryServicePort.getCategoriesByName(name, pageable);
+        PaginationRequest paginationRequest =new PaginationRequest(page,size,orderAsc);
+       /* Page<CategoryModel> categoryPage = categoryServicePort.getCategoriesByName(name, paginationRequest);
         List<CategoryResponse> responseList = new ArrayList<>();
         for (CategoryModel model : categoryPage.getContent()) {
             responseList.add(categoryDtoMapper.modelToResponse(model));
@@ -44,7 +45,8 @@ public class CategoryServiceImpl implements CategoryService {
                 categoryPage.getTotalElements(),
                 categoryPage.getTotalPages(),
                 categoryPage.hasNext()
-        );
+        );*/
+        return null;
     }
 
 

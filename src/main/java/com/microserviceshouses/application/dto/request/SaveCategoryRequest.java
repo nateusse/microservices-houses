@@ -14,3 +14,5 @@ public record SaveCategoryRequest(
         String description
 
 ){}
+
+//MethodArgumentNotValidException

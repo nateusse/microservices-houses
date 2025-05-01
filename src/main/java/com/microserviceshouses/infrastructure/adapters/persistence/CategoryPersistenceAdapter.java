@@ -1,6 +1,7 @@
 package com.microserviceshouses.infrastructure.adapters.persistence;
 
 import com.microserviceshouses.domain.model.CategoryModel;
+import com.microserviceshouses.domain.model.PaginationRequest;
 import com.microserviceshouses.domain.ports.out.CategoryPersistencePort;
 import com.microserviceshouses.infrastructure.mappers.CategoryEntityMapper;
 import com.microserviceshouses.infrastructure.repositories.mysql.CategoryRepository;
@@ -36,10 +37,13 @@ public class CategoryPersistenceAdapter implements CategoryPersistencePort {
     }
 
     @Override
-    public Page<CategoryModel> getCategoriesByName(String name, Pageable pageable) {
-        return categoryRepository.findByNameContainingIgnoreCase(name, pageable)
-                .map(categoryEntityMapper::entityToModel);
+    public Page<CategoryModel> getCategoriesByName(String name, PaginationRequest paginationRequest) {
+        /*return categoryRepository.findByNameContainingIgnoreCase(name, paginationRequest)
+                .map(categoryEntityMapper::entityToModel);*/
+        return null;
     }
+
+
 
 
 }

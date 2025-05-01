@@ -1,11 +1,12 @@
 package com.microserviceshouses.domain.usecases;
 
 import com.microserviceshouses.domain.model.CategoryModel;
+import com.microserviceshouses.domain.model.PaginationRequest;
+import com.microserviceshouses.domain.model.PaginationResponse;
 import com.microserviceshouses.domain.ports.in.CategoryServicePort;
 import com.microserviceshouses.domain.exceptions.CategoryAlreadyExistsException;
 import com.microserviceshouses.domain.ports.out.CategoryPersistencePort;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
 
 
 
@@ -27,9 +28,11 @@ public class CategoryUseCase implements CategoryServicePort {
 
     }
 
+
     @Override
-    public Page<CategoryModel> getCategoriesByName(String name, Pageable pageable) {
-        return categoryPersistencePort.getCategoriesByName(name, pageable);
+    public PaginationResponse<CategoryModel> getCategoriesByName(String name, PaginationRequest paginationRequest) {
+        //return categoryPersistencePort.getCategoriesByName(name, paginationRequest);
+        return null;
     }
 
 }

@@ -30,7 +30,7 @@ public class CategoryController {
     public ResponseEntity<PageDto<CategoryResponse>> getCategories(
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "true") boolean orderAsc
     ) {
         PageDto<CategoryResponse> response = categoryService.getCategories(name, page, size, orderAsc);
