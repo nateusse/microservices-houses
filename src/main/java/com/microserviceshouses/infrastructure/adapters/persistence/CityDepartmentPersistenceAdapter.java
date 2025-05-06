@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 
 @Service
 @Transactional
@@ -35,6 +36,17 @@ public class CityDepartmentPersistenceAdapter implements CityDepartmentPersisten
     public CityDepartmentModel getCityDepartmentById(Long id) {
         CityDepartmentEntity entity = cityDepartmentRepository.findById(id).orElse(null);
         return cityDepartmentEntityMapper.entityToModel(entity);
+    }
+
+    public List<CityDepartmentModel> getCityDepartmentByNameLike(String name) {
+        List<CityDepartmentEntity> entities = cityDepartmentRepository.findByNameContainingIgnoreCase(name);
+        return mapList(entities);
+    }
+
+    private List<CityDepartmentModel> mapList(List<CityDepartmentEntity> entityList) {
+        return entityList.stream()
+                .map(cityDepartmentEntityMapper::entityToModel)
+                .toList();
     }
 
 

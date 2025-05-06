@@ -30,7 +30,12 @@ public class LocationServiceImpl implements LocationService {
         return new SaveLocationResponse(Constants.SAVE_LOCATION_RESPONSE_MESSAGE, LocalDateTime.now());
     }
 
-
+    @Override
+    public PaginationResponse<LocationResponse> getLocationsFiltered(String name, String sortBy, boolean orderAsc, int page, int size) {
+        PaginationResponseModel<LocationModel> locations = locationServicePort.getLocationsByCityOrDepartmentName(name, sortBy , orderAsc, page, size);
+        PaginationResponse<LocationResponse> locationsResponse = locationDtoMapper.modelListToResponseList(locations);
+        return locationsResponse;
+    }
 
 
 }

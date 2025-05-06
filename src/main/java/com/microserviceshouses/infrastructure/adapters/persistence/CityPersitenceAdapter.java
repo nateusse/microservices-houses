@@ -27,6 +27,16 @@ public class CityPersitenceAdapter implements CityPersistencePort {
         cityRepository.save(entity);
     }
 
+    @Override
+    public CityModel getCityById(Long id) {
+        CityEntity entity = cityRepository.findById(id).orElse(null);
+        return cityEntityMapper.entityToModel(entity);
+    }
+
+    public List<CityModel> getCityByNameLike(String name) {
+        List<CityEntity> entities = cityRepository.findByNameContainingIgnoreCase(name);
+        return mapList(entities);
+    }
 
     private List<CityModel> mapList(List<CityEntity> entityList) {
         return entityList.stream()

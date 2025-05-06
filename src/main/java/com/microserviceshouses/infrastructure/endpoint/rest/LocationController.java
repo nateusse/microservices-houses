@@ -25,5 +25,14 @@ public class LocationController {
         return ResponseEntity.status(HttpStatus.CREATED).body(save);
     }
 
+    @GetMapping("/")
+    public ResponseEntity<PaginationResponse<LocationResponse>> getLocationsFiltered(
+            @RequestParam String name,
+            @RequestParam String sortBy,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "true") boolean orderAsc) {
+        return ResponseEntity.ok(locationService.getLocationsFiltered(name,sortBy, orderAsc, page, size));
+    }
 
 }

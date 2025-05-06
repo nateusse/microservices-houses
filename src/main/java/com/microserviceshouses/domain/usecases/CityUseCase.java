@@ -1,5 +1,6 @@
 package com.microserviceshouses.domain.usecases;
 
+
 import com.microserviceshouses.domain.exceptions.CityDepartmentNotExist;
 import com.microserviceshouses.domain.model.CityModel;
 import com.microserviceshouses.domain.ports.in.CityServicePort;
@@ -21,12 +22,9 @@ public class CityUseCase implements CityServicePort
     public void save(CityModel cityModel) {
         long departmentId = cityModel.getCityDepartmentId();
 
-        // Check if the department exists
         if (cityDepartmentPersistencePort.getCityDepartmentById(departmentId) == null) {
             throw new CityDepartmentNotExist();
         }
-
-        // Save the city
         cityPersistencePort.save(cityModel);
     }
 
