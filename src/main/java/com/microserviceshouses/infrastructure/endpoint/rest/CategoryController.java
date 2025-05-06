@@ -2,7 +2,7 @@ package com.microserviceshouses.infrastructure.endpoint.rest;
 
 import com.microserviceshouses.application.dto.request.SaveCategoryRequest;
 import com.microserviceshouses.application.dto.response.CategoryResponse;
-import com.microserviceshouses.application.dto.response.PageResponse;
+import com.microserviceshouses.application.dto.response.PaginationResponse;
 import com.microserviceshouses.application.dto.response.SaveCategoryResponse;
 import com.microserviceshouses.application.services.CategoryService;
 import jakarta.validation.Valid;
@@ -16,23 +16,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/category")
 @RequiredArgsConstructor
 public class CategoryController {
-
     private final CategoryService categoryService;
 
     @PostMapping("/")
     public ResponseEntity<SaveCategoryResponse> save(@Valid @RequestBody SaveCategoryRequest saveCategoryRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.save(saveCategoryRequest));
+        SaveCategoryResponse save = categoryService.save(saveCategoryRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(save);
     }
 
     @GetMapping("/")
-    public ResponseEntity<PageResponse<CategoryResponse>> getAllCategories(
-            @RequestParam(defaultValue = "") String name,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "2") int size,
-            @RequestParam(defaultValue = "true") boolean orderAsc
-    ){
-        PageResponse<CategoryResponse> response = categoryService.getCategories(name,page, size,orderAsc);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<PaginationResponse<CategoryResponse>> getAllCategories(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "5") Integer size,
+            @RequestParam(defaultValue = "true") boolean orderAsc) {
+        return ResponseEntity.ok(categoryService.getCategories(page, size, orderAsc));
     }
-
 }

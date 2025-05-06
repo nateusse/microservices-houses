@@ -1,10 +1,11 @@
 package com.microserviceshouses.domain.usecases;
 
+import com.microserviceshouses.domain.exceptions.CategoryAlreadyExistsException;
 import com.microserviceshouses.domain.model.CategoryModel;
+import com.microserviceshouses.domain.model.pagination.PaginationRequestModel;
+import com.microserviceshouses.domain.model.pagination.PaginationResponseModel;
 import com.microserviceshouses.domain.ports.in.CategoryServicePort;
 import com.microserviceshouses.domain.ports.out.CategoryPersistencePort;
-
-import java.util.List;
 
 
 public class CategoryUseCase implements CategoryServicePort {
@@ -16,19 +17,20 @@ public class CategoryUseCase implements CategoryServicePort {
 
     @Override
     public void save(CategoryModel categoryModel) {
-        CategoryModel category = categoryPersistencePort.getCategoryByName(categoryModel.getName());
+        String name = categoryModel.getName();
+        CategoryModel category = categoryPersistencePort.getCategoryByName(name);
         if (category != null) {
-            throw new RuntimeException("Category already exists");
+            throw new CategoryAlreadyExistsException();
         }
         categoryPersistencePort.save(categoryModel);
-
     }
 
     @Override
-    public List<CategoryModel> getCategories(Integer page, Integer size, boolean orderAsc) {
-        return categoryPersistencePort.getCategories(page, size, orderAsc);
+    public PaginationResponseModel<CategoryModel> getCategories(PaginationRequestModel paginationRequestModel) {
+        try {
+            return categoryPersistencePort.getCategories(paginationRequestModel);
+        }catch (Exception e) {
+            throw new RuntimeException("Error retrieving categories", e);
+        }
     }
-
-
-
 }

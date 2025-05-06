@@ -1,13 +1,12 @@
 package com.microserviceshouses.domain.ports.out;
 
 import com.microserviceshouses.domain.model.CategoryModel;
-import java.util.List;
-
+import com.microserviceshouses.domain.model.pagination.PaginationRequestModel;
+import com.microserviceshouses.domain.model.pagination.PaginationResponseModel;
 
 
 public interface CategoryPersistencePort {
     void save(CategoryModel categoryModel);
     CategoryModel getCategoryByName(String categoryName);
-    List<CategoryModel> getCategories(Integer page, Integer size, boolean orderAsc);
-    boolean existsByName(String name);
+    PaginationResponseModel<CategoryModel> getCategories(PaginationRequestModel paginationRequestModel);
 }
