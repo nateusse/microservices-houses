@@ -5,11 +5,12 @@ public final class DomainConstants {
         throw new IllegalStateException("Utility class");
     }
 
-    public static final int CATEGORY_NAME_MAX_LENGTH = 50;
-    public static final int CATEGORY_DESCRIPTION_MAX_LENGTH= 50;
-    public static final int LOCATION_NAME_MAX_LENGTH = 50;
-    public static final int LOCATION_DESCRIPTION_MAX_LENGTH= 120;
+    public static final String FIELD_NAME_NULL_MESSAGE = "Field 'name' can not be null";
+    public static final String FIELD_DESCRIPTION_NULL_MESSAGE = "Field 'description' can not be null";
+    public  static final String FIELD_CITY_DEPARTMENT_ID_NULL_MESSAGE = "Field 'cityDepartmentId' can not be null";
 
-    public static final String FIELD_NAME_NULL_MESSAGE = "Name must not be null";
-    public static final String FIELD_DESCRIPTION_NULL_MESSAGE = "Description must not be null";
+    public static final String FIELD_CITY_ID_NULL_MESSAGE = "Field 'cityId' can not be null";
+    public static final String FIELD_NEIGHBORHOOD_NULL_MESSAGE = "Field 'neighborhood' can not be null";
+
 }
+

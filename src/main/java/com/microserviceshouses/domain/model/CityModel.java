@@ -1,51 +1,58 @@
 package com.microserviceshouses.domain.model;
 
-import java.util.Objects;
 
-import static com.microserviceshouses.domain.utils.constants.DomainConstants.LOCATION_DESCRIPTION_MAX_LENGTH;
-import static com.microserviceshouses.domain.utils.constants.DomainConstants.LOCATION_NAME_MAX_LENGTH;
-import static com.microserviceshouses.domain.utils.validations.Validation.validateDescription;
-import static com.microserviceshouses.domain.utils.validations.Validation.validateName;
+import com.microserviceshouses.domain.exceptions.CityDescriptionMaxSizeExceededException;
+import com.microserviceshouses.domain.exceptions.CityNameMaxSizeExceededException;
+import com.microserviceshouses.domain.utils.constants.DomainConstants;
+import java.util.Objects;
 
 public class CityModel {
 
     private Long id;
     private String name;
     private String description;
-    private DepartmentModel department;
+    private Long cityDepartmentId;
 
-    public CityModel(Long id) {
-        this.id = Objects.requireNonNull(id, "City ID must not be null");
-    }
-
-    public CityModel(Long id, String name, String description, DepartmentModel department) {
-        this.name = validateName(name, "City name", LOCATION_NAME_MAX_LENGTH);
-        this.description = validateDescription(description, "City description", LOCATION_DESCRIPTION_MAX_LENGTH);
-        this.department = Objects.requireNonNull(department, "City must belong to a department");
+    public CityModel(Long id, String name, String description, Long cityDepartmentId) {
+        if (name.length() > 50) throw new CityNameMaxSizeExceededException();
+        if (description.length() > 90) throw new CityDescriptionMaxSizeExceededException();
         this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = validateName(name, "City name", LOCATION_NAME_MAX_LENGTH);
-    }
-
-    public void setDescription(String description) {
-        this.description = validateDescription(description, "City description", LOCATION_DESCRIPTION_MAX_LENGTH);
+        this.name = Objects.requireNonNull(name, DomainConstants.FIELD_NAME_NULL_MESSAGE);
+        this.description = Objects.requireNonNull(description, DomainConstants.FIELD_DESCRIPTION_NULL_MESSAGE);
+        this.cityDepartmentId = Objects.requireNonNull(cityDepartmentId, DomainConstants.FIELD_CITY_DEPARTMENT_ID_NULL_MESSAGE);
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        if (name.length() > 50) throw new CityNameMaxSizeExceededException();
+        this.name = Objects.requireNonNull(name, DomainConstants.FIELD_NAME_NULL_MESSAGE);
     }
 
     public String getDescription() {
         return description;
     }
 
-    public DepartmentModel getDepartment() {
-        return department;
+    public void setDescription(String description) {
+        if (description.length() > 90) throw new CityDescriptionMaxSizeExceededException();
+        this.description = Objects.requireNonNull(description, DomainConstants.FIELD_DESCRIPTION_NULL_MESSAGE);
+    }
+
+    public Long getCityDepartmentId() {
+        return cityDepartmentId;
+    }
+
+    public void setCityDepartmentId(Long cityDepartmentId) {
+        this.cityDepartmentId = Objects.requireNonNull(cityDepartmentId, DomainConstants.FIELD_CITY_DEPARTMENT_ID_NULL_MESSAGE);
     }
 }

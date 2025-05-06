@@ -18,11 +18,9 @@ public class PaginationResponseModel<T> {
     public List<T> getContent() {
         return content;
     }
-
     public int getTotalPages() {
         return totalPages;
     }
-
     public int getTotalElements() {
         return totalElements;
     }

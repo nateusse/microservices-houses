@@ -1,7 +1,7 @@
 package com.microserviceshouses.application.dto.request;
 
-public record SaveCityRequest(
+public record SaveCityRequest (
         String name,
         String description,
-        Long departmentId
-) {}
+        Long   cityDepartmentId
+) { }

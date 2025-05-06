@@ -16,11 +16,9 @@ public class PaginationRequestModel {
     public int getPage() {
         return page;
     }
-
     public int getSize() {
         return size;
     }
-
     public boolean isOrderAsc() {
         return orderAsc;
     }

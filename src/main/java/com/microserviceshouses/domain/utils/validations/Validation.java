@@ -2,7 +2,6 @@ package com.microserviceshouses.domain.utils.validations;
 
 
 import com.microserviceshouses.domain.exceptions.NameNotEmptyException;
-
 import java.util.Objects;
 
 public class Validation {
