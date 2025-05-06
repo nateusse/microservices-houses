@@ -1,6 +1,5 @@
 package com.microserviceshouses.infrastructure.repositories.mysql;
 
-
 import com.microserviceshouses.infrastructure.entity.CityDepartmentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
