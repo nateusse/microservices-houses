@@ -2,52 +2,43 @@ package com.microserviceshouses.application.services.impl;
 
 import com.microserviceshouses.application.dto.request.SaveCategoryRequest;
 import com.microserviceshouses.application.dto.response.CategoryResponse;
-import com.microserviceshouses.application.dto.response.PageDto;
+import com.microserviceshouses.application.dto.response.PaginationResponse;
 import com.microserviceshouses.application.dto.response.SaveCategoryResponse;
 import com.microserviceshouses.application.mappers.CategoryDtoMapper;
+import com.microserviceshouses.application.mappers.PaginationDtoMapper;
 import com.microserviceshouses.application.services.CategoryService;
-import com.microserviceshouses.domain.model.CategoryModel;
-import com.microserviceshouses.domain.model.PaginationRequest;
-import com.microserviceshouses.domain.ports.in.CategoryServicePort;
 import com.microserviceshouses.commons.configurations.utils.Constants;
+import com.microserviceshouses.domain.model.CategoryModel;
+import com.microserviceshouses.domain.model.pagination.PaginationRequestModel;
+import com.microserviceshouses.domain.model.pagination.PaginationResponseModel;
+import com.microserviceshouses.domain.ports.in.CategoryServicePort;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService {
-
     private final CategoryServicePort categoryServicePort;
     private final CategoryDtoMapper categoryDtoMapper;
+    private final PaginationDtoMapper paginationDtoMapper;
 
     @Override
     public SaveCategoryResponse save(SaveCategoryRequest request) {
-        categoryServicePort.save(categoryDtoMapper.requestToModel(request));
-        return new SaveCategoryResponse(Constants.SAVE_CATEGORY_RESPONSE_MESSAGE, LocalDateTime.now());
+        CategoryModel category = categoryDtoMapper.requestToModel(request);
+        categoryServicePort.save(category);
+        LocalDateTime time = LocalDateTime.now();
+        return new SaveCategoryResponse(Constants.SAVE_CATEGORY_RESPONSE_MESSAGE, time);
     }
 
     @Override
-    public PageDto<CategoryResponse> getCategories(String name, int page, int size, boolean orderAsc) {
-        PaginationRequest paginationRequest =new PaginationRequest(page,size,orderAsc);
-       /* Page<CategoryModel> categoryPage = categoryServicePort.getCategoriesByName(name, paginationRequest);
-        List<CategoryResponse> responseList = new ArrayList<>();
-        for (CategoryModel model : categoryPage.getContent()) {
-            responseList.add(categoryDtoMapper.modelToResponse(model));
-        }
-        return new PageDto<>(
-                responseList,
-                categoryPage.getNumber(),
-                categoryPage.getSize(),
-                categoryPage.getTotalElements(),
-                categoryPage.getTotalPages(),
-                categoryPage.hasNext()
-        );*/
-        return null;
+    public PaginationResponse<CategoryResponse> getCategories(Integer page, Integer size, boolean orderAsc) {
+        PaginationRequestModel paginationRequestModel = paginationDtoMapper.requestToModel(page, size, orderAsc);
+        PaginationResponseModel<CategoryModel> paginationResponseModel = categoryServicePort.getCategories(paginationRequestModel);
+        List<CategoryResponse> responses = categoryDtoMapper.modelListToResponseList(paginationResponseModel.getContent());
+        return new PaginationResponse<>(responses, paginationResponseModel.getTotalPages(), paginationResponseModel.getTotalElements());
     }
-
 
 }

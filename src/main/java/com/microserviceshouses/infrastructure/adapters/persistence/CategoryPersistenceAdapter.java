@@ -1,13 +1,17 @@
 package com.microserviceshouses.infrastructure.adapters.persistence;
-
+import com.microserviceshouses.commons.configurations.utils.Constants;
 import com.microserviceshouses.domain.model.CategoryModel;
-import com.microserviceshouses.domain.model.PaginationRequest;
+import com.microserviceshouses.domain.model.pagination.PaginationRequestModel;
+import com.microserviceshouses.domain.model.pagination.PaginationResponseModel;
 import com.microserviceshouses.domain.ports.out.CategoryPersistencePort;
+import com.microserviceshouses.infrastructure.entity.CategoryEntity;
 import com.microserviceshouses.infrastructure.mappers.CategoryEntityMapper;
 import com.microserviceshouses.infrastructure.repositories.mysql.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,29 +25,28 @@ public class CategoryPersistenceAdapter implements CategoryPersistencePort {
 
     @Override
     public void save(CategoryModel categoryModel) {
-        categoryRepository.save(categoryEntityMapper.modelToEntity(categoryModel));
+        CategoryEntity entity = categoryEntityMapper.modelToEntity(categoryModel);
+        categoryRepository.save(entity);
     }
 
     @Override
-    public boolean existsByName(String name) {
-        return categoryRepository.existsByName(name);
+    public CategoryModel getCategoryByName(String categoryName) {
+
+        CategoryEntity entity = categoryRepository.findByName(categoryName).orElse(null);
+        return categoryEntityMapper.entityToModel(entity);
+
     }
 
     @Override
-    public CategoryModel getCategoryByName(String name) {
-        return categoryEntityMapper.entityToModel(
-                categoryRepository.findByName(name).orElse(null)
-        );
+    public PaginationResponseModel<CategoryModel> getCategories(PaginationRequestModel paginationRequestModel) {
+        Pageable pagination;
+        if (paginationRequestModel.isOrderAsc()) pagination = PageRequest.of(paginationRequestModel.getPage(), paginationRequestModel.getSize(), Sort.by(Constants.PAGEABLE_FIELD_NAME).ascending());
+        else pagination = PageRequest.of(paginationRequestModel.getPage(), paginationRequestModel.getSize(), Sort.by(Constants.PAGEABLE_FIELD_NAME).descending());
+        Page<CategoryEntity> page = categoryRepository.findAll(pagination);
+        PaginationResponseModel<CategoryModel> paginationResponse = new PaginationResponseModel<>(
+                categoryEntityMapper.entityListToModelList(categoryRepository.findAll(pagination).getContent()),
+                page.getTotalPages(),
+                (int) page.getTotalElements());
+        return paginationResponse;
     }
-
-    @Override
-    public Page<CategoryModel> getCategoriesByName(String name, PaginationRequest paginationRequest) {
-        /*return categoryRepository.findByNameContainingIgnoreCase(name, paginationRequest)
-                .map(categoryEntityMapper::entityToModel);*/
-        return null;
-    }
-
-
-
-
 }

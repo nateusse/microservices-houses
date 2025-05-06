@@ -1,14 +1,13 @@
 package com.microserviceshouses.domain.ports.in;
 
 import com.microserviceshouses.domain.model.CategoryModel;
-import com.microserviceshouses.domain.model.PaginationRequest;
-import com.microserviceshouses.domain.model.PaginationResponse;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.microserviceshouses.domain.model.pagination.PaginationRequestModel;
+import com.microserviceshouses.domain.model.pagination.PaginationResponseModel;
+
+import java.util.List;
 
 
 public interface CategoryServicePort {
     void save(CategoryModel categoryModel);
-    PaginationResponse<CategoryModel> getCategoriesByName(String name, PaginationRequest paginationRequest);
-
+    PaginationResponseModel<CategoryModel> getCategories(PaginationRequestModel paginationRequestModel);
 }

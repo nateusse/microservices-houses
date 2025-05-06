@@ -1,16 +1,12 @@
 package com.microserviceshouses.domain.ports.out;
 
 import com.microserviceshouses.domain.model.CategoryModel;
-import com.microserviceshouses.domain.model.PaginationRequest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
-import java.util.List;
+import com.microserviceshouses.domain.model.pagination.PaginationRequestModel;
+import com.microserviceshouses.domain.model.pagination.PaginationResponseModel;
 
 
 public interface CategoryPersistencePort {
     void save(CategoryModel categoryModel);
-    boolean existsByName(String name);
-    CategoryModel getCategoryByName(String name);
-    Page<CategoryModel> getCategoriesByName(String name, PaginationRequest paginationRequest);
+    CategoryModel getCategoryByName(String categoryName);
+    PaginationResponseModel<CategoryModel> getCategories(PaginationRequestModel paginationRequestModel);
 }

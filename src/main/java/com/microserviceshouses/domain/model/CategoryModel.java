@@ -1,34 +1,30 @@
 package com.microserviceshouses.domain.model;
 
-import com.microserviceshouses.domain.exceptions.DescriptionMaxSizeExceededException;
-import com.microserviceshouses.domain.exceptions.DescriptionNotEmptyException;
-import com.microserviceshouses.domain.exceptions.NameMaxSizeExceededException;
-import com.microserviceshouses.domain.exceptions.NameNotEmptyException;
-import com.microserviceshouses.domain.utils.constants.DomainConstants;
 
+import com.microserviceshouses.domain.exceptions.CategoryDescriptionMaxSizeExceededException;
+import com.microserviceshouses.domain.exceptions.CategoryNameMaxSizeExceededException;
+import com.microserviceshouses.domain.utils.constants.DomainConstants;
 import java.util.Objects;
 
-import static com.microserviceshouses.domain.utils.constants.DomainConstants.*;
-
 public class CategoryModel {
-
     private Long id;
     private String name;
     private String description;
 
     public CategoryModel(Long id, String name, String description) {
-
-        if (name.trim().isEmpty()) throw new NameNotEmptyException();
-        if (description.trim().isEmpty()) throw new DescriptionNotEmptyException();
-        if (name.length() > CATEGORY_NAME_MAX_LENGTH ) throw new NameMaxSizeExceededException();
-        if (description.length() > CATEGORY_DESCRIPTION_MAX_LENGTH) throw new DescriptionMaxSizeExceededException();
-        this.name = Objects.requireNonNull(name, DomainConstants.FIELD_NAME_NULL_MESSAGE).trim();
-        this.description = Objects.requireNonNull(description, DomainConstants.FIELD_DESCRIPTION_NULL_MESSAGE).trim();
+        if (name.length() > 50) throw new CategoryNameMaxSizeExceededException();
+        if (description.length() > 90) throw new CategoryDescriptionMaxSizeExceededException();
         this.id = id;
+        this.name = Objects.requireNonNull(name, DomainConstants.FIELD_NAME_NULL_MESSAGE);
+        this.description = Objects.requireNonNull(description,  DomainConstants.FIELD_DESCRIPTION_NULL_MESSAGE);
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -36,10 +32,8 @@ public class CategoryModel {
     }
 
     public void setName(String name) {
-        this.name = Objects.requireNonNull(name, FIELD_NAME_NULL_MESSAGE).trim();
-        if (name.isEmpty()) throw new NameNotEmptyException();
-        if (name.length() > CATEGORY_NAME_MAX_LENGTH) throw new NameMaxSizeExceededException();
-        this.name = name;
+        if (name.length() > 50) throw new CategoryNameMaxSizeExceededException();
+        this.name = Objects.requireNonNull(name, DomainConstants.FIELD_NAME_NULL_MESSAGE);
     }
 
     public String getDescription() {
@@ -47,11 +41,5 @@ public class CategoryModel {
     }
 
     public void setDescription(String description) {
-        this.description = Objects.requireNonNull(description, FIELD_DESCRIPTION_NULL_MESSAGE).trim();
-        if (description.isEmpty()) throw new DescriptionNotEmptyException();
-        if (description.length()  > CATEGORY_DESCRIPTION_MAX_LENGTH) throw new DescriptionMaxSizeExceededException();
-        this.description = description;
     }
-
 }
-
