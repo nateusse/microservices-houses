@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "cities")
 public class CityEntity {
 
     @Id
@@ -18,7 +19,7 @@ public class CityEntity {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "id_citydepartment", nullable = false)
+    @JoinColumn(name = "id_department", nullable = false)
     private CityDepartmentEntity cityDepartment;
 
 }
